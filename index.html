@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>방에 모기가 있어</title>
+	<style type="text/css">
+		body{margin: 0; background-image: url(room.png); background-size: cover;}
+		.mosquito{width: 300px; position: absolute; left: 100px; top: 100px;} 
+	</style>
+</head>
+<body>
+	<input type="range" id="control" min="200" max="600" value="150">
+	<audio id="mogi" src="mogi.mp3"></audio>
+	<script type="text/javascript">
+		mosquito();
+		function mosquito(){
+			var a = document.createElement("img");
+			a.src = "mosquito.png"
+			a.style.mixBlendMode = "multiply"
+			a.className = "mosquito";
+			a.style.width = control.value + "px";
+			var b = Math.random()*window.innerWidth;
+			var c = Math.random()*window.innerHeight;
+			a.style.left = b + "px";
+			a.style.top = c + "px";
+			a.onclick = function(){
+				a.parentNode.removeChild(a);
+				mogi.play();
+				mosquito();
+			}
+			document.body.appendChild(a);
+		}
+	</script>
+</body>
+</html>
